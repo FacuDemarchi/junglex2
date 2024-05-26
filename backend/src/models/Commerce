@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+const { getCommerce } = require('../controllers/commerce');
+const { getCommerceByCategory } = require('../controllers/commerce');
+const { getCommerceByProduct } = require('../controllers/commerce');
+
+router.get('/', getCommerce);
+router.get('/category/:category', getCommerceByCategory);
+router.get('/product/:product', getCommerceByProduct);
+
+module.exports = router;
