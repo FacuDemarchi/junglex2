@@ -1,4 +1,4 @@
-name: Deploy Backend to Heroku
+name: Deploy Backend to Railway
 
 on:
   push:
@@ -26,10 +26,12 @@ jobs:
         run: npm run build
         working-directory: ./backend
 
-      - name: Deploy to Heroku
+      - name: Install Railway CLI
+        run: npm install -g railway
+
+      - name: Deploy to Railway
         env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
         run: |
-          git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
-          git push heroku main
+          railway up --token $RAILWAY_API_TOKEN
         working-directory: ./backend
