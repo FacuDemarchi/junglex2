@@ -1,2 +1,4 @@
 node_modules
 .db
+.env
+db_init.js
